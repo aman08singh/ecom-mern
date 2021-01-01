@@ -19,11 +19,15 @@ const ProductSchema = new Schema(
     },
     category: {
       type: ObjectId,
-      ref: "Category",
+      // ref: "Category", If any error occurs check this
       required: true,
     },
     quantity: {
       type: Number,
+    },
+    sold: {
+      type: Number,
+      default: 0,
     },
     photo: {
       data: Buffer,

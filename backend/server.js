@@ -15,31 +15,33 @@ router.use(cors());
 
 //Bodyparser middleware
 app.use(
-    bodyParser.urlencoded({
-        extended: false
-    })
+  bodyParser.urlencoded({
+    extended: false,
+  })
 );
 
 //DB Config
 const db = require("./config/keys").mongoUrl;
 
 //Connect to MongoDB
-mongoose.connect(db, {
-    useNewUrlParser: true
-}).then(() => console.log("MongoDB successfully connected"))
-    .catch(err => console.log(err));
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+  })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch((err) => console.log(err));
 
-    //Passport middleware
-    app.use(passport.initialize());
+//Passport middleware
+app.use(passport.initialize());
 
-    //Passport config
-    require("./config/passport")(passport);
+//Passport config
+require("./config/passport")(passport);
 
-    //Routes
-    app.use("/api/users", authRoutes);
-    app.use("/api/users", userRoutes);
-    app.use("/api/users", categoryRoutes);
-    app.use("/api/users", productRoutes);
+//Routes
+app.use("/api/users", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/users", categoryRoutes);
+app.use("/api/users", productRoutes);
 
 const port = 5000;
 
